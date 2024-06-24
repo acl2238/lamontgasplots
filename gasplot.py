@@ -165,6 +165,44 @@ fig7.update_xaxes(title_text="Date and Time (UTC)")
 fig7.update_yaxes(title_text="<b>CH4 and CO ppb</b>", secondary_y=False)
 fig7.update_yaxes(title_text="<b>CO2 ppm (orange)</b>", secondary_y=True)
 
+# Correlation plots
+# All 3 subplots are part of fig 8
+fig8 = make_subplots(rows=1, cols=3, 
+                     subplot_titles=('<b>CO ppb vs CH4 ppm</b>', 
+                                     '<b>CO ppb vs CO2 ppm</b>', 
+                                     '<b>CO2 ppm vs CH4 ppm</b>'))
+
+# CO vs CH4
+fig8.add_trace(
+    go.Scatter(x=df['CO_ppb_asrc'], y=df['CH4_ppb_asrc'] / 1000,mode="markers",name="<b>CO vs CH4 ASRC</b>"),
+               row=1, col=1,
+)
+fig8.add_trace(
+    go.Scatter(x=df['CO_ppb_rutgers'], y=df['CH4_ppb_rutgers'] / 1000,mode="markers",name="<b>CO vs CH4 Rutgers</b>"),
+               row=1, col=1
+)
+# CO vs CO2
+fig8.add_trace(
+    go.Scatter(x=df['CO_ppb_asrc'], y=df['CO2_ppm_asrc'],mode="markers",name="<b>CO vs CO2 ASRC</b>"),
+               row=1, col=2,
+)
+fig8.add_trace(
+    go.Scatter(x=df['CO_ppb_rutgers'], y=df['CO2_ppm_rutgers'],mode="markers",name="<b>CO vs CO2 Rutgers</b>"),
+               row=1, col=2,
+)
+fig8.add_trace(
+    go.Scatter(x=df['CO2_ppm_asrc'], y=df['CH4_ppb_asrc'] / 1000,mode="markers",name="<b>C02 vs CH4 ASRC</b>"),
+               row=1, col=3,
+)
+fig8.add_trace(
+    go.Scatter(x=df['CO2_ppm_rutgers'], y=df['CH4_ppb_rutgers'] / 1000,mode="markers",name="<b>C02 vs CH4 Rutgers</b>"),
+               row=1, col=3,
+)
+fig8.update_layout(
+    title_text = "<b>Correlation Plots for CH4, CO2, CO</b>"
+)
+
+
 # Look into the app.layout formatting
 
 # Font formatting (text size)
@@ -182,6 +220,7 @@ fig4.update_layout(font=dict(size=20), xaxis = dict(rangeslider=dict(visible=Tru
 fig5.update_layout(font=dict(size=20), xaxis = dict(rangeslider=dict(visible=True)))
 fig6.update_layout(font=dict(size=20), xaxis = dict(rangeslider=dict(visible=True)))
 fig7.update_layout(font=dict(size=20), xaxis = dict(rangeslider=dict(visible=True)))
+fig8.update_layout(font=dict(size=20))
 
 app.layout = html.Div(children=[
 
@@ -215,6 +254,9 @@ app.layout = html.Div(children=[
     ]), 
     html.Div([
         dcc.Graph(figure=fig7),
+    ]),
+    html.Div([
+        dcc.Graph(figure=fig8), 
     ])
 
 ])
