@@ -41,9 +41,9 @@ fig3 = px.line(df, x = 'UTC_time', y = ['CO_ppb_asrc','CO_ppb_rutgers'], title =
 # Correlation plots
 # All 3 subplots are part of fig 8
 fig4 = make_subplots(rows=1, cols=3, 
-                     subplot_titles=('<b>CH4 ppm vs CO ppb</b>', 
-                                     '<b>CO2 ppm vs CO ppb</b>', 
-                                     '<b>CH4 ppm vs CO2 ppm</b>'))
+                     subplot_titles=('<b>CH4 (ppm) vs CO (ppb)</b>', 
+                                     '<b>CO2 (ppm) vs CO (ppb)</b>', 
+                                     '<b>CH4 (ppm) vs CO2 (ppm)</b>'))
 
 # CO vs CH4
 fig4.add_trace(
@@ -74,26 +74,29 @@ fig4.add_trace(
 fig4.update_layout(
     title_text = "<b>Correlation Plots for CH4, CO2, CO</b>"
 )
-fig4.update_xaxes(title_text="CO ppb", row=1, col=1)
-fig4.update_xaxes(title_text="CO ppb", row=1, col=2)
-fig4.update_xaxes(title_text="CO2 ppm", row=1, col=3)
 
-fig4.update_yaxes(title_text="CH4 ppb", row=1, col=1)
-fig4.update_yaxes(title_text="CO2 ppm", row=1, col=2)
-fig4.update_yaxes(title_text="CH4 ppm", row=1, col=3)
+fig4.update_layout(legend= {'itemsizing': 'constant'})
+
+fig4.update_xaxes(title_text="CO (ppb)", row=1, col=1)
+fig4.update_xaxes(title_text="CO (ppb)", row=1, col=2)
+fig4.update_xaxes(title_text="CO2 (ppm)", row=1, col=3)
+
+fig4.update_yaxes(title_text="CH4 (ppm)", row=1, col=1)
+fig4.update_yaxes(title_text="CO2 (ppm)", row=1, col=2)
+fig4.update_yaxes(title_text="CH4 (ppm)", row=1, col=3)
 
 
 # Look into the app.layout formatting
 
 # Font formatting (text size)
-fig.update_layout(font=dict(size=20), yaxis_title = 'Methane (CH4) ppb',
+fig.update_layout(font=dict(size=20), yaxis_title = 'Methane/CH4 (ppb)',
                   legend_title_text='Data Source', 
                   xaxis = dict(rangeslider=dict(visible=True)))
                   # Append above line to each fig.update_layout for horizontal scrollbars
-fig2.update_layout(font=dict(size=20), yaxis_title = 'Carbon Dioxide (CO2) ppm',
+fig2.update_layout(font=dict(size=20), yaxis_title = 'Carbon Dioxide/CO2 (ppm)',
                    legend_title_text='Data Source', 
                    xaxis = dict(rangeslider=dict(visible=True)))
-fig3.update_layout(font=dict(size=20), yaxis_title = 'Carbon Monoxide (CO) ppb',
+fig3.update_layout(font=dict(size=20), yaxis_title = 'Carbon Monoxide/CO (ppb)',
                    legend_title_text='Data Source',
                    xaxis = dict(rangeslider=dict(visible=True)))
 fig4.update_layout(font=dict(size=16))
