@@ -129,4 +129,4 @@ app.layout = html.Div(children=[
 
 ])
 
-app.run_server(debug=True, use_reloader=False)
+app.run_server(host='0.0.0.0', debug=False, use_reloader=False)
