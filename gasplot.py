@@ -5,10 +5,14 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+import flask
+
 import dash # pip install dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
+
+server = flask.Flask(__name__)
 
 app = dash.Dash(__name__) # Starting the app
 
@@ -129,4 +133,5 @@ app.layout = html.Div(children=[
 
 ])
 
-app.run_server(host='0.0.0.0', debug=True, use_reloader=False)
+if __name__ == '__main__':
+            app.run_server(debug=True)
