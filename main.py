@@ -5,6 +5,6 @@ import time
 
 while True:
 	subprocess.run("timeout 24h gunicorn gasplot:server -b :8050".split(' '))
-	subprocess.run("pkill gunicorn".split(' '))
+	subprocess.run("killall gunicorn".split(' '))
 	print("hello!!!")
 	time.sleep(5)
